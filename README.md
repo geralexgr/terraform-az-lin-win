@@ -16,7 +16,7 @@ Then you will need to create an app role assignment on your subscription which c
 Then you can deploy your resources by navigation on windows or linux folder.
 
 ``` 
-cd windows
+cd windows // cd linux
 terraform init
 terraform apply
 ```
