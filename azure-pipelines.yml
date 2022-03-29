@@ -43,12 +43,15 @@ stages:
               workingDirectory: '$(Build.SourcesDirectory)/${{ parameters.image }}'
               backendServiceArm: 'AzureMSDN'
               backendAzureRmResourceGroupName: 'terraform'
+              backendAzureRmStorageAccountName: 'geralexgrstorageaccount'
+              backendAzureRmContainerName: 'terraform'
           - task: TerraformTaskV2@2
             displayName: terraform apply
             inputs:
               provider: 'azurerm'
               command: 'apply'
               workingDirectory: '$(Build.SourcesDirectory)/${{ parameters.image }}'
+              environmentServiceNameAzureRM: 'AzureMSDN'
           
           # - task: AzureCLI@2
           #   displayName: login into your subscription
