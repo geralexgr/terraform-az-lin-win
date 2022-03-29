@@ -81,10 +81,11 @@ stages:
               targetType: 'inline'
               script: |
                 cd $(Build.SourcesDirectory)/${{ parameters.image }}
+                export TF_LOG=DEBUG
                 terraform init \
                 -backend-config=subscription_id="$(ARM_SUBSCRIPTION_ID)" \
                 -backend-config=tenant_id="$(ARM_TENANT_ID)" \
                 -backend-config=client_id="$(ARM_CLIENT_ID)" \
                 -backend-config=client_secret="$(ARM_CLIENT_SECRET)"
                 terraform apply -auto-approve 
-                export TF_LOG=DEBUG
+                
