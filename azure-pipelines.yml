@@ -20,6 +20,8 @@ variables:
   - name: ARM_CLIENT_SECRET
   - name: ARM_TENANT_ID
   - name: ARM_SUBSCRIPTION_ID
+
+
 stages:
 
   - stage:
