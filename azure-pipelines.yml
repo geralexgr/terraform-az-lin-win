@@ -51,7 +51,7 @@ stages:
             inputs:
               script: |
                 cd $(Build.SourcesDirectory)/${{ parameters.image }}
-                pwd
+                az login
                 terraform init \
                 -backend-config=subscription_id="$(ARM_SUBSCRIPTION_ID)" \
                 -backend-config=tenant_id="$(ARM_TENANT_ID)" \
