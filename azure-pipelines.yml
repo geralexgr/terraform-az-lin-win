@@ -28,10 +28,19 @@ stages:
                 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
                 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
                 sudo apt-get update && sudo apt install terraform
+
+          - task: AzureCLI@2
+            displayName: login into your subscription
+            inputs:
+              azureSubscription: 'Visual Studio Ultimate with MSDN(03270a1d-efad-41a7-8761-2209b8ef3336)'
+              scriptType: 'ps'
+              scriptLocation: 'inlineScript'
+              inlineScript: 'az login'
           - task: CmdLine@2
+            displayName: Terraform apply 
             inputs:
               script: |
                 cd $(Build.SourcesDirectory)/${{ parameters.image}}
                 terraform init
-                terraform plan 
+                terraform apply -auto-approve 
 
