@@ -32,19 +32,23 @@ stages:
           #       sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
           #       sudo apt-get update && sudo apt install terraform
           - task: TerraformInstaller@0
+            displayName: install terraform tools
             inputs:
               terraformVersion: 'latest'
           - task: TerraformTaskV2@2
+            displayName: terraform init
             inputs:
               provider: 'azurerm'
               command: 'init'
               workingDirectory: '$(Build.SourcesDirectory)/${{ parameters.image }}'
               backendServiceArm: 'AzureMSDN'
           - task: TerraformTaskV2@2
+            displayName: terraform apply
             inputs:
               provider: 'azurerm'
               command: 'apply'
               workingDirectory: '$(Build.SourcesDirectory)/${{ parameters.image }}'
+          
           # - task: AzureCLI@2
           #   displayName: login into your subscription
           #   inputs:
