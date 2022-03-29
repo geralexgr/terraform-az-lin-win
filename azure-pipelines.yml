@@ -51,6 +51,7 @@ stages:
                       echo "##vso[task.setvariable variable=ARM_CLIENT_SECRET;issecret=true]$($env:servicePrincipalKey)"
                       echo "##vso[task.setvariable variable=ARM_TENANT_ID]$($env:tenantId)"
                       echo "##vso[task.setvariable variable=ARM_SUBSCRIPTION_ID]$SUBSCRIPTION_ID"
+                az login
           
                 
           - task: CmdLine@2
