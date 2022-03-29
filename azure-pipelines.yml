@@ -63,7 +63,6 @@ stages:
             inputs:
               script: |
                 cd $(Build.SourcesDirectory)/${{ parameters.image }}
-                az login --service-principal -u $(CLIENT_ID) -p $(CLIENT_SECRET) --tenant $(TENANT_ID)
                 terraform init 
                 terraform apply -auto-approve 
 
