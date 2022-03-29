@@ -54,9 +54,12 @@ stages:
               scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: |
-                $SUBSCRIPTION_ID= $(az account show --query id --output tsv)
+                SUBSCRIPTION_ID= $(az account show --query id --output tsv)
+                echo $env:servicePrincipalId
+                echo SUBSCRIPTION_ID
+                echo $env:tenantId
                 export ARM_CLIENT_ID = $env:servicePrincipalId
-                export ARM_SUBSCRIPTION_ID = $SUBSCRIPTION_ID
+                export ARM_SUBSCRIPTION_ID = SUBSCRIPTION_ID
                 export ARM_TENANT_ID = $env:tenantId
                 export ARM_CLIENT_SECRET = $env:servicePrincipalKey
                 cd $(Build.SourcesDirectory)/${{ parameters.image }}
