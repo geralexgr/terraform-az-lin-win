@@ -35,17 +35,26 @@ stages:
             displayName: login into your subscription
             inputs:
               azureSubscription: 'Visual Studio Ultimate with MSDN(03270a1d-efad-41a7-8761-2209b8ef3336)'
-              scriptType: 'bash'
+              scriptType: 'pscore'
               scriptLocation: 'inlineScript'
               inlineScript: |
-                az login
-                az account set --subscription "Visual Studio Ultimate with MSDN"
+                echo "*** Setting Subscription environment variables for Terraform backend config"
+                $SUBSCRIPTION_ID=$(az account show --query id --output tsv)
+                      echo "##vso[task.setvariable variable=ARM_CLIENT_ID]$($env:servicePrincipalId)"
+                      echo "##vso[task.setvariable variable=ARM_CLIENT_SECRET;issecret=true]$($env:servicePrincipalKey)"
+                      echo "##vso[task.setvariable variable=ARM_TENANT_ID]$($env:tenantId)"
+                      echo "##vso[task.setvariable variable=ARM_SUBSCRIPTION_ID]$SUBSCRIPTION_ID"
+          
                 
           - task: CmdLine@2
             displayName: Terraform apply 
             inputs:
               script: |
                 cd $(Build.SourcesDirectory)/${{ parameters.image}}
-                terraform init
+                terraform init \
+                -backend-config=subscription_id="$(ARM_SUBSCRIPTION_ID)" \
+                -backend-config=tenant_id="$(ARM_TENANT_ID)" \
+                -backend-config=client_id="$(ARM_CLIENT_ID)" \
+                -backend-config=client_secret="$(ARM_CLIENT_SECRET)" \
                 terraform apply -auto-approve 
 
