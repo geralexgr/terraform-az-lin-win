@@ -39,7 +39,7 @@ stages:
               scriptLocation: 'inlineScript'
               inlineScript: |
                 az login
-                az account set --subscription name
+                az account set --subscription "Visual Studio Ultimate with MSDN"
                 
           - task: CmdLine@2
             displayName: Terraform apply 
