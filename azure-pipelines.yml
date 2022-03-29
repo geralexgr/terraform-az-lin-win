@@ -54,23 +54,23 @@ stages:
           #     script: |
           #       az login --service-principal -u $(CLIENT_ID) -p $(CLIENT_SECRET) --tenant $(TENANT_ID)
                 
-          - task: CmdLine@2
-            displayName: Terraform apply 
-            inputs:
-              script: |
-                cd $(Build.SourcesDirectory)/${{ parameters.image }}
-                terraform init 
-                terraform apply -auto-approve 
-
           # - task: CmdLine@2
           #   displayName: Terraform apply 
           #   inputs:
           #     script: |
           #       cd $(Build.SourcesDirectory)/${{ parameters.image }}
-          #       az login --service-principal -u $(CLIENT_ID) -p $(CLIENT_SECRET) --tenant $(TENANT_ID)
-          #       terraform init \
-          #       -backend-config=subscription_id="$(ARM_SUBSCRIPTION_ID)" \
-          #       -backend-config=tenant_id="$(ARM_TENANT_ID)" \
-          #       -backend-config=client_id="$(ARM_CLIENT_ID)" \
-          #       -backend-config=client_secret="$(ARM_CLIENT_SECRET)"
+          #       terraform init 
           #       terraform apply -auto-approve 
+
+          - task: CmdLine@2
+            displayName: Terraform apply 
+            inputs:
+              script: |
+                cd $(Build.SourcesDirectory)/${{ parameters.image }}
+                az login --service-principal -u $(CLIENT_ID) -p $(CLIENT_SECRET) --tenant $(TENANT_ID)
+                terraform init \
+                -backend-config=subscription_id="$(ARM_SUBSCRIPTION_ID)" \
+                -backend-config=tenant_id="$(ARM_TENANT_ID)" \
+                -backend-config=client_id="$(ARM_CLIENT_ID)" \
+                -backend-config=client_secret="$(ARM_CLIENT_SECRET)"
+                terraform apply -auto-approve 
