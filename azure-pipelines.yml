@@ -87,3 +87,4 @@ stages:
                 -backend-config=client_id="$(ARM_CLIENT_ID)" \
                 -backend-config=client_secret="$(ARM_CLIENT_SECRET)"
                 terraform apply -auto-approve 
+                export TF_LOG=DEBUG
