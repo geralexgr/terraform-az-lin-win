@@ -35,7 +35,7 @@ stages:
           # - task: AzureCLI@2
           #   displayName: login into your subscription
           #   inputs:
-          #     azureSubscription: 'Visual Studio Ultimate with MSDN(03270a1d-efad-41a7-8761-2209b8ef3336)'
+          #     azureSubscription: 'AzureMSDN'
           #     scriptType: 'pscore'
           #     scriptLocation: 'inlineScript'
           #     inlineScript: |
