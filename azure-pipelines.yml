@@ -1,0 +1,37 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+parameters:
+- name: image
+  displayName: VM Image
+  type: string
+  default: windows
+  values:
+  - windows
+  - linux
+
+stages:
+
+  - stage:
+    displayName: Deploy terraform resources
+    jobs:
+      - job:
+        displayName: Deploy vm
+        steps:
+          - task: CmdLine@2
+            displayName: Install terraform CLI
+            inputs:
+              script: |
+                curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+                sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+                sudo apt-get update && sudo apt install terraform
+          - task: CmdLine@2
+            inputs:
+              script: |
+                cd $(Build.SourcesDirectory)/${{ parameters.image}}
+                terraform init
+                terraform plan 
+
