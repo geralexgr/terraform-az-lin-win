@@ -51,8 +51,8 @@ stages:
               targetType: 'inline'
               script: |
                 cd $(Build.SourcesDirectory)/${{ parameters.image }}
+                echo $(ARM_SUBSCRIPTION_ID) $(ARM_TENANT_ID)  $(ARM_TENANT_ID) $(ARM_CLIENT_SECRET)
                 terraform init \
-                 echo $(ARM_SUBSCRIPTION_ID) $(ARM_TENANT_ID)  $(ARM_TENANT_ID) $(ARM_CLIENT_SECRET)
                 -backend-config=subscription_id="$(ARM_SUBSCRIPTION_ID)" \
                 -backend-config=tenant_id="$(ARM_TENANT_ID)" \
                 -backend-config=client_id="$(ARM_CLIENT_ID)" \
