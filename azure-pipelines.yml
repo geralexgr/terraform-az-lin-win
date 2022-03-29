@@ -33,7 +33,7 @@ stages:
             displayName: login into your subscription
             inputs:
               azureSubscription: 'Visual Studio Ultimate with MSDN(03270a1d-efad-41a7-8761-2209b8ef3336)'
-              scriptType: 'ps'
+              scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: 'az login'
           - task: CmdLine@2
