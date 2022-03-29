@@ -50,7 +50,8 @@ stages:
             displayName: Terraform apply 
             inputs:
               script: |
-                cd $(Build.SourcesDirectory)/${{ parameters.image}}
+                cd $(Build.SourcesDirectory)/${{ parameters.image }}
+                pwd
                 terraform init \
                 -backend-config=subscription_id="$(ARM_SUBSCRIPTION_ID)" \
                 -backend-config=tenant_id="$(ARM_TENANT_ID)" \
