@@ -45,6 +45,7 @@ stages:
               backendAzureRmResourceGroupName: 'terraform'
               backendAzureRmStorageAccountName: 'geralexgrstorageaccount'
               backendAzureRmContainerName: 'terraform'
+              backendAzureRmKey: 'terraform.tfstate'
           - task: TerraformTaskV2@2
             displayName: terraform apply
             inputs:
