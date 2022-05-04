@@ -37,10 +37,10 @@ stages:
               command: 'init'
               workingDirectory: '$(Build.SourcesDirectory)/${{ parameters.image }}'
               backendServiceArm: 'AzureMSDN'
-              # backendAzureRmResourceGroupName: 'terraform'
-              # backendAzureRmStorageAccountName: 'geralexgrstorageaccount'
-              # backendAzureRmContainerName: 'terraform'
-              # backendAzureRmKey: 'terraform.tfstate'
+              backendAzureRmResourceGroupName: 'terraform'
+              backendAzureRmStorageAccountName: 'geralexgrstorageaccount'
+              backendAzureRmContainerName: 'terraform'
+              backendAzureRmKey: 'terraform.tfstate'
           
           - task: TerraformTaskV2@2
             displayName: terraform apply
