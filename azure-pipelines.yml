@@ -36,7 +36,7 @@ stages:
               provider: 'azurerm'
               command: 'init'
               workingDirectory: '$(Build.SourcesDirectory)/${{ parameters.image }}'
-              backendServiceArm: 'AzureMSDN'
+              backendServiceArm: 'AzureMSDN-ADO Intro'
               backendAzureRmResourceGroupName: 'terraform'
               backendAzureRmStorageAccountName: 'geralexgrstorageaccount'
               backendAzureRmContainerName: 'terraform'
