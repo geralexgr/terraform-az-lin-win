@@ -48,4 +48,4 @@ stages:
               provider: 'azurerm'
               command: 'apply'
               workingDirectory: '$(Build.SourcesDirectory)/${{ parameters.image }}'
-              environmentServiceNameAzureRM: 'AzureMSDN'
+              environmentServiceNameAzureRM: 'AzureMSDN-ADO Intro'
